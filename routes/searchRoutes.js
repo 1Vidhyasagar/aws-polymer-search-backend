@@ -6,7 +6,7 @@ const verifyToken = require("../middleware/authMiddleware");
 // @route   GET /api/search
 // @desc    Search polymer results (protected route)
 router.get("/", verifyToken, async (req, res) => {
-  const { query } = req.query;
+const query = req.query.q;
 
   try {
     const results = await SearchResult.find({
