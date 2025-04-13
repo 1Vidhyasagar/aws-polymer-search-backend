@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-// ✅ Allow only your Netlify frontend
 const allowedOrigins = ["https://aws-polymer-search-capstone.netlify.app"];
 
 app.use(
