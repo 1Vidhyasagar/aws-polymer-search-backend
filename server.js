@@ -4,13 +4,19 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 dotenv.config();
-require("dotenv").config();
-
 const app = express();
 
+// ✅ Allow only your Netlify frontend
+const allowedOrigins = ["https://aws-polymer-search-capstone.netlify.app"];
 
-// Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Routes
@@ -19,7 +25,6 @@ app.use("/api/search", searchRoutes);
 
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
-
 
 // MongoDB connection
 mongoose
